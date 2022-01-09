@@ -13,9 +13,9 @@ namespace CapgeminiDDD.Web.Api.Controllers
     [Route("api/[controller]")]
     public class StudentController : ControllerBase
     {
-        private readonly IRepository<Student> _studentRepository;
+        private readonly IStudentRepository<Student> _studentRepository;
 
-        public StudentController(IRepository<Student> studentRepository)
+        public StudentController(IStudentRepository<Student> studentRepository)
         {
             _studentRepository = studentRepository;
         }
@@ -24,6 +24,12 @@ namespace CapgeminiDDD.Web.Api.Controllers
         public async Task<IEnumerable<Student>> Get()
         {
             return await _studentRepository.GetAsync();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<Student> GetOne([FromRoute] int id)
+        {
+            return await _studentRepository.GetOneAsync(id);
         }
 
         [HttpPost]
@@ -47,7 +53,7 @@ namespace CapgeminiDDD.Web.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromBody] Student student, int id)
+        public async Task<IActionResult> Update([FromBody] Student student, [FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {

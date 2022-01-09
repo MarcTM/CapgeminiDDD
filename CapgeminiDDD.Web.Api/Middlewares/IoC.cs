@@ -8,7 +8,7 @@ namespace CapgeminiDDD.Web.Api.Middlewares
     {
         public static IServiceCollection AddDependency(this IServiceCollection services)
         {
-            services.AddScoped(typeof(IRepository<Student>), typeof(StudentRepository));
+            services.AddScoped(typeof(IStudentRepository<Student>), typeof(StudentRepository));
 
             return services;
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapgeminiDDD.Infrastructure.Repository
 {
-    public class StudentRepository : IRepository<Student>
+    public class StudentRepository : IStudentRepository<Student>
     {
         private readonly CapgeminiDDDDbContext _context;
 
@@ -17,9 +17,12 @@ namespace CapgeminiDDD.Infrastructure.Repository
 
         public async Task<IEnumerable<Student>> GetAsync()
         {
-            IQueryable<Student> query = _context.Student;
+            return await _context.Student.Include("Directions").ToListAsync();
+        }
 
-            return await query.ToListAsync();
+        public async Task<Student> GetOneAsync(int id)
+        {
+            return await _context.Student.Include("Directions").FirstOrDefaultAsync(student => student.Id == id);
         }
 
         public async Task<bool> CreateAsync(Student student)
@@ -56,8 +59,17 @@ namespace CapgeminiDDD.Infrastructure.Repository
         {
             bool created = false;
 
+            List<Direction> directions = await _context.Direction.Where(direction => direction.StudentId == id).ToListAsync();
+            Student student = await _context.Student.FirstOrDefaultAsync(student => student.Id == id);
 
-            var student = await _context.Student.FirstOrDefaultAsync(student => student.Id == id);
+            if (directions.Count > 0)
+            {
+                foreach (var direction in directions)
+                {
+                    _context.Direction.Remove(direction);
+                }
+            }
+
             var save = _context.Student.Remove(student);
 
             if (save != null)

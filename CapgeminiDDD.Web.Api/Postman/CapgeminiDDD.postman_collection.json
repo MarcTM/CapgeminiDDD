@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "a44c36b4-4f45-4bd2-b47c-4a9f9549b5fb",
+		"name": "CapgeminiDDD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetStudents",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Marc\",\r\n    \"surname\": \"Torres Martinez\",\r\n    \"age\": 20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:7585/api/Student",
+					"host": [
+						"localhost"
+					],
+					"port": "7585",
+					"path": [
+						"api",
+						"Student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOneStudent",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:7585/api/Student/1003",
+					"host": [
+						"localhost"
+					],
+					"port": "7585",
+					"path": [
+						"api",
+						"Student",
+						"1003"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostStudent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Marc\",\r\n  \"surname\": \"Torres\",\r\n  \"age\": 20,\r\n  \"directions\": [\r\n    {\r\n      \"street\": \"Calle Primera\",\r\n      \"number\": 22,\r\n      \"floor\": 2,\r\n      \"door\": 4\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:7585/api/Student",
+					"host": [
+						"localhost"
+					],
+					"port": "7585",
+					"path": [
+						"api",
+						"Student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateStudent",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Marc\",\r\n    \"surname\": \"Towers\",\r\n    \"age\": 20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:7585/api/Student/4002",
+					"host": [
+						"localhost"
+					],
+					"port": "7585",
+					"path": [
+						"api",
+						"Student",
+						"4002"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteStudent",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:7585/api/Student/4002",
+					"host": [
+						"localhost"
+					],
+					"port": "7585",
+					"path": [
+						"api",
+						"Student",
+						"4002"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

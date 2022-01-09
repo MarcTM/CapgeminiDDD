@@ -3,9 +3,11 @@ using System.Threading.Tasks;
 
 namespace CapgeminiDDD.Infrastructure.Repository
 {
-    public interface IRepository<Student>
+    public interface IStudentRepository<Student>
     {
         Task<IEnumerable<Student>> GetAsync();
+
+        Task<Student> GetOneAsync(int id);
 
         Task<bool> CreateAsync(Student entity);
 
