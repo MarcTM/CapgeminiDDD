@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapgeminiDDD.Infrastructure.Repository
 {
-    public class StudentRepository : IStudentRepository<Student>
+    public class StudentRepository : IRepository<Student>
     {
         private readonly CapgeminiDDDDbContext _context;
 

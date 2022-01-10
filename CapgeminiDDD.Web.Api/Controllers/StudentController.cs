@@ -1,21 +1,19 @@
 ﻿using CapgeminiDDD.Common.Model;
 using CapgeminiDDD.Infrastructure.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CapgeminiDDD.Web.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1.0")]
     public class StudentController : ControllerBase
     {
-        private readonly IStudentRepository<Student> _studentRepository;
+        private readonly IRepository<Student> _studentRepository;
 
-        public StudentController(IStudentRepository<Student> studentRepository)
+        public StudentController(IRepository<Student> studentRepository)
         {
             _studentRepository = studentRepository;
         }
