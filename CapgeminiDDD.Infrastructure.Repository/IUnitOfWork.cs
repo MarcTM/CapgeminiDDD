@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace CapgeminiDDD.Infrastructure.Repository
 {
@@ -6,6 +7,6 @@ namespace CapgeminiDDD.Infrastructure.Repository
     {
         CapgeminiDDDDbContext Context { get; }
 
-        void Commit();
+        Task<bool> Commit();
     }
 }

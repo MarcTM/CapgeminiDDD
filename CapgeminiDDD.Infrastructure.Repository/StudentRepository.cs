@@ -10,9 +10,12 @@ namespace CapgeminiDDD.Infrastructure.Repository
     {
         private readonly CapgeminiDDDDbContext _context;
 
+        private readonly UnitOfWork _unitOfWork;
+
         public StudentRepository(CapgeminiDDDDbContext context)
         {
             _context = context;
+            _unitOfWork = new(_context);
         }
 
         public async Task<IEnumerable<Student>> GetAsync()
@@ -34,7 +37,7 @@ namespace CapgeminiDDD.Infrastructure.Repository
             if (save != null)
             {
                 created = true;
-                await _context.SaveChangesAsync();
+                await _unitOfWork.Commit();
             }
 
             return created;
@@ -50,7 +53,7 @@ namespace CapgeminiDDD.Infrastructure.Repository
             studentt.Surname = student.Surname;
             studentt.Age = student.Age;
 
-            await _context.SaveChangesAsync();
+            await _unitOfWork.Commit();
 
             return studentt;
         }
@@ -75,7 +78,7 @@ namespace CapgeminiDDD.Infrastructure.Repository
             if (save != null)
             {
                 created = true;
-                await _context.SaveChangesAsync();
+                await _unitOfWork.Commit();
             }
 
             return created;

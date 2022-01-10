@@ -1,4 +1,6 @@
-﻿namespace CapgeminiDDD.Infrastructure.Repository
+﻿using System.Threading.Tasks;
+
+namespace CapgeminiDDD.Infrastructure.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -9,9 +11,10 @@
             Context = context;
         }
 
-        public void Commit()
+        public async Task<bool> Commit()
         {
-            Context.SaveChanges();
+            await Context.SaveChangesAsync();
+            return true;
         }
 
         public void Dispose()
